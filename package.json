@@ -1,0 +1,13 @@
+{
+  "name": "node-rest",
+  "version": "0.0.1",
+  "dependencies": {
+    "winston": "~2.2.0",
+    "express": "~4.14.0",
+    "nconf": "~0.8.4",
+    "mongoose": "~4.5.1",
+    "underscore": "~1.8.3",
+    "node-polyglot": "~2.0.0",
+    "async": "~2.0.0-rc.6"
+  }
+}
