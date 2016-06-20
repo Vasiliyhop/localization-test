@@ -1,17 +1,18 @@
 var express = require('express'),
     path = require('path'),
+    bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
     logger = require('../libs/logger'),
     routes = require('./routes'),
     config = require('./config'),
     db = require('./mongoose'),
     app = express();
 
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride());
 app.use(function (err, req, res, next) {
-  logger.log(err, req, res, next);
-  console.log(err.name);
+  logger.log(err.name);
   if (err.name === 'ValidationError') {
     res.send(400, err);
   } else {
@@ -32,7 +33,6 @@ function run() {
   routes.setup(app, handlers);
   db.init(path.join(__dirname, '../models'), function (err, data) {
     app.listen(config.get('port'), function () {
-      console.log('App running on port:' + config.get('port'));
       logger.info('App running on port:' + config.get('port'));
     });
   });

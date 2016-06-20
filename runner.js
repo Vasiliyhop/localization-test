@@ -22,4 +22,4 @@ var executor = require('./libs/executor'),
 		});
 	});
 })()
-//curl --data-urlencode "name=vasa" http://localhost:1337/rest/user
+//curl --data-urlencode "name=vasa" http://localhost:8080/rest/user
